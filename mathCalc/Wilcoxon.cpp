@@ -27,47 +27,53 @@ bool Wilcoxon::calcDifference()
 bool Wilcoxon::createRanks()
 {
 	std::sort(m_result.begin(), m_result.end());
-	int counter = 1;
-	for (size_t i = 0; i < m_result.size(); ++i)
+	for (size_t i = 0; i< m_result.size(); ++i)
+		std::cout << m_result[i].rank << '\t' << m_result[i].absDiff << std::endl;
+	std::cout << std::endl;
+
+	for (size_t i = 0; i < m_result.size(); i++)
 	{
-		m_result[i].rank = counter;
-		counter++;
+		m_result[i].rank = i+1;
 	}
 
-	double sum = 0;
 
-	for (size_t i = 0; i < m_result.size(); ++i)
+	for (size_t i = 0; i < m_result.size()-1; i++) //-1 ¿eby nie wysz³o poza zakres
 	{
-		int begin, end, k;
-		if (m_result[i].absDiff == m_result[i + 1].absDiff)
-		{
-			begin = end = k = i;
-			while (m_result[k].absDiff == m_result[k + 1].absDiff)
-			{
-				k++;
-				end++;
-			}
-			k = begin;
-			int number = (end - begin)+1;
-			for (k; k <= end; k++)
-			{
-				sum += m_result[k].rank;
-			}
-			double newRank;
-			newRank = sum / number;
+		size_t begin, end;
 
-			for (begin; begin <= end; ++begin)
+		if (isEqual(m_result[i].absDiff, m_result[i + 1].absDiff))
+		{
+			begin = i;
+			double sum = m_result[i].rank;
+
+			for (end = i+1; isEqual(m_result[end].absDiff, m_result[end + 1].absDiff); end++)
+			{
+				sum += m_result[end].rank;
+			}
+			sum += m_result[end].rank; 
+
+			size_t numberOfElements = (end - begin) + 1;
+			double newRank = sum / numberOfElements;
+
+			for (begin; begin <= end; begin++)
 			{
 				m_result[begin].rank = newRank;
 			}
 		}
 	}
 
-	for (int i = 0; i< m_result.size(); ++i)
-		std::cout << m_result[i].rank << ' ' << m_result[i].absDiff << std::endl;
+	for (size_t i = 0; i< m_result.size(); ++i)
+		std::cout << m_result[i].rank << '\t' << m_result[i].absDiff << std::endl;
 
 
 	return true;
+}
+
+bool Wilcoxon::isEqual(double a, double b)
+{
+	const double epsilon = 0.0000000000001;
+
+	return (b - epsilon <= a && a <= b + epsilon);
 }
 
 bool Wilcoxon::performTest(const std::vector<double> &vec1, const std::vector<double> &vec2)
@@ -85,4 +91,5 @@ bool Wilcoxon::performTest(const std::vector<double> &vec1, const std::vector<do
 		std::cout << "Unable to perform test";
 	}
 	
+	return true;
 }

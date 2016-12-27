@@ -22,6 +22,7 @@ struct Results
 class Wilcoxon
 {
 	std::vector<Results> m_result;
+	bool Wilcoxon::isEqual(double a, double b);
 	bool calcDifference();
 	bool createRanks();
 	const std::vector<double> *m_data1;

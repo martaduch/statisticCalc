@@ -15,14 +15,14 @@ int main()
 
 	v1.push_back(3.28);
 	v1.push_back(7.69);
-	v1.push_back(5.3);
-	v1.push_back(4);
+	v1.push_back(6);
+	v1.push_back(5.8);
 	v1.push_back(5.3);
 
 	v2.push_back(4.28);
-	v2.push_back(7.39);
+	v2.push_back(7.49);
 	v2.push_back(5.6);
-	v2.push_back(3.7);
+	v2.push_back(6.2);
 	v2.push_back(1);
 
 	Wilcoxon test;
