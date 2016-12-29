@@ -2,10 +2,10 @@
 
 class Math
 {
-	std::vector<double> m_sample;
+	std::vector<double> *m_sample;
 	int m_size;
 public:
-	Math();
+	Math(std::vector<double> &vec);
 	double findMin();
 	double findMax();
 	double findMean();

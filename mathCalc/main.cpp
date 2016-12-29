@@ -3,35 +3,48 @@
 
 int main()
 {
-	/*Math object;
-
-	std::cout << object.findMax() << std::endl;
-	std::cout << object.findMin()<< std::endl;
-	std::cout << object.findMean()<< std::endl;
-	std::cout << object.findMedian() << std::endl;*/
 
 	std::vector<double> v1;
 	std::vector<double> v2;
 
-	v1.push_back(3.28);
-	v1.push_back(7.69);
-	v1.push_back(6);
-	v1.push_back(5.8);
-	v1.push_back(5.3);
+	v1.push_back(125);
+	v1.push_back(132);
+	v1.push_back(138);
+	v1.push_back(120);
+	v1.push_back(125);
+	v1.push_back(127);
+	v1.push_back(136);
+	v1.push_back(139);
+	v1.push_back(131);
+	v1.push_back(132);
+	v1.push_back(135);
+	v1.push_back(136);
+	v1.push_back(128);
+	v1.push_back(127);
 
-	v2.push_back(4.28);
-	v2.push_back(7.49);
-	v2.push_back(5.6);
-	v2.push_back(6.2);
-	v2.push_back(1);
+	Math object(v1);
+	std::cout<< object.findMax() << std::endl;
+	std::cout << object.findMean() << std::endl;
+	std::cout << object.findStdDev() << std::endl;
+
+	v2.push_back(118);
+	v2.push_back(134);
+	v2.push_back(130);
+	v2.push_back(124);
+	v2.push_back(105);
+	v2.push_back(130);
+	v2.push_back(130);
+	v2.push_back(132);
+	v2.push_back(123);
+	v2.push_back(128);
+	v2.push_back(126);
+	v2.push_back(140);
+	v2.push_back(135);
+	v2.push_back(126);
 
 	Wilcoxon test;
-	test.performTest(v1, v2);
 
-	/*std::vector<double> m_data1;
-	m_data1.push_back(3.28);
-	m_data1.push_back(7.69);
-	std::vector<double> *m_data2 = &m_data1;
-	std::vector<double> m_data = *m_data2;*/
+	if (!test.performTest(v1, v2))
+		std::cout << "Unable to perform test" << std::endl;
 	return 0;
 }

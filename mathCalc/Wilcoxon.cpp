@@ -13,7 +13,7 @@ bool Wilcoxon::calcDifference()
 		std::cout << "Unproper data";
 		return false;
 	}
-
+	
 	for (size_t i = 0; i < m_data1->size(); i++)
 	{
 		double diff = (*m_data1)[i] - (*m_data2)[i];
@@ -27,17 +27,25 @@ bool Wilcoxon::calcDifference()
 bool Wilcoxon::createRanks()
 {
 	std::sort(m_result.begin(), m_result.end());
-	for (size_t i = 0; i< m_result.size(); ++i)
-		std::cout << m_result[i].rank << '\t' << m_result[i].absDiff << std::endl;
-	std::cout << std::endl;
 
+	size_t rank = 1;
 	for (size_t i = 0; i < m_result.size(); i++)
 	{
-		m_result[i].rank = i+1;
+		if (m_result[i].diff)
+		{
+			m_result[i].rank = rank;
+			rank++;
+			m_nonZero++;
+		}
 	}
 
+	if (m_nonZero < 6 || m_nonZero > 50)
+	{
+		std::cout << "Unable to perform test. Improper data" << std::endl;
+		return false;
+	}
 
-	for (size_t i = 0; i < m_result.size()-1; i++) //-1 ¿eby nie wysz³o poza zakres
+	for (size_t i = 0; i < m_result.size()-1; i++) //-1 to prevent being out of range
 	{
 		size_t begin, end;
 
@@ -61,11 +69,6 @@ bool Wilcoxon::createRanks()
 			}
 		}
 	}
-
-	for (size_t i = 0; i< m_result.size(); ++i)
-		std::cout << m_result[i].rank << '\t' << m_result[i].absDiff << std::endl;
-
-
 	return true;
 }
 
@@ -76,6 +79,50 @@ bool Wilcoxon::isEqual(double a, double b)
 	return (b - epsilon <= a && a <= b + epsilon);
 }
 
+void Wilcoxon::signRanks()
+{
+	for (size_t i = 0; i < m_result.size(); i++)
+	{
+		if (m_result[i].diff < 0)
+			m_result[i].rank = -m_result[i].rank;
+	}
+}
+
+bool Wilcoxon::tStaticticW()
+{
+	//a = 0.05
+	int wCritical[] = { 0, 2, 3, 5, 8, 10, 13, 17, 21, 25, 29, 34, 40, 46, 52, 58, 65, 73, 81, 89, 98, 107, 116, 126, 137, 147,
+						159, 170, 182, 195, 208, 221, 235, 249, 264, 279, 294, 310, 327, 343, 361, 378, 396, 415, 434 };
+	double wPositive = 0, wNegative = 0;
+
+	for (size_t i = 0; i < m_result.size(); i++)
+	{
+		if (m_result[i].rank > 0)
+			wPositive += m_result[i].rank;
+		else
+			wNegative += m_result[i].rank;
+	}
+
+	wPositive = abs(wPositive);
+	wNegative = abs(wNegative);
+	
+	std::cout << "Sum of positive difference rank is " << wPositive << std::endl;
+	std::cout << "Sum of negative difference rank is " << wNegative << std::endl;
+
+	int wValue; 
+	if (wPositive < wNegative)
+		wValue = (int)round(wPositive);
+	else
+		wValue = (int)round(wNegative);
+
+	std::cout << "W statistic is " << wValue << std::endl;
+
+	if (wValue <= wCritical[m_nonZero - 6])
+		return true;
+	else
+		return false;
+}
+
 bool Wilcoxon::performTest(const std::vector<double> &vec1, const std::vector<double> &vec2)
 {
 	m_data1 = &vec1;
@@ -83,13 +130,20 @@ bool Wilcoxon::performTest(const std::vector<double> &vec1, const std::vector<do
 
 	if (!calcDifference())
 	{
+		std::cout << "Unable to perform test";
 		return false;
 	}
 
 	if(!createRanks())
-	{
-		std::cout << "Unable to perform test";
-	}
+		return false;
 	
+	std::cout << "Effective sample size is " << m_nonZero << std::endl;
+
+	signRanks();
+	if (tStaticticW())
+		std::cout << "Reject Null Hypothesis as calculated W <= W critical";
+	else
+		std::cout << "Fail to reject H0 as W > W critical";
+
 	return true;
 }

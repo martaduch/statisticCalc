@@ -22,13 +22,15 @@ struct Results
 class Wilcoxon
 {
 	std::vector<Results> m_result;
+	size_t m_nonZero;
 	bool Wilcoxon::isEqual(double a, double b);
 	bool calcDifference();
 	bool createRanks();
+	void signRanks();
+	bool tStaticticW();
 	const std::vector<double> *m_data1;
 	const std::vector<double> *m_data2;
 public:
 	Wilcoxon();
 	bool performTest(const std::vector<double> &vec1, const std::vector<double> &vec2);
-	//void performTest();
 };
