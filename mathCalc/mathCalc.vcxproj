@@ -146,12 +146,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataReader.cpp" />
     <ClCompile Include="FileOperations.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Wilcoxon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataReader.h" />
     <ClInclude Include="FileOperations.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="Math.h" />
