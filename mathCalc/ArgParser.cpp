@@ -5,9 +5,9 @@ void ArgParser::help()
 	std::cout << "\t *** HELP ***" << std::endl;
 	std::cout << "How to set arguments properly: "<< std::endl;
 	std::cout << "-i path to input file" << std::endl;
-	std::cout << " -c columns to be used separeted with colons" << std::endl; 
+	std::cout << " -c columns to be used separeted with colons or 'a' for all columns" << std::endl; 
 	std::cout << "-t test to be performed:" << std::endl;
-	std::cout << "\t s - standard tests, w - Wilcoxon test, f - friedman test" << std::endl;
+	std::cout << "\t g - general standard tests, w - Wilcoxon test, f - friedman test" << std::endl;
 	std::cout << "Example: -t input.txt -c 5,6 -t w,f";
 }
 
@@ -24,22 +24,37 @@ bool ArgParser::assignData(int argc, char *argv[])
 		switch (argv[i][1])
 		{
 		case 'i':
-			params.filePath = argv[i + 1];
+			m_filePath = argv[i + 1];
 			break;
 		case 'c':
-			params.columns = argv[i + 1];
+			m_columns = argv[i + 1];
 			break;
 		case 't':
-			params.toDo = argv[i + 1][0];
+			m_toDo = argv[i + 1][0];
 			break;
-			//default ?
+		/*default:
+			std::cout << "unknow symbol" << std::endl;
+			return false;*/
 		}
 	}
 
 	return true;
 }
 
-ArgParser::parameters ArgParser::getParams()
+
+std::string ArgParser::getPath()
 {
-	return params;
+	return m_filePath;
+}
+
+
+std::string ArgParser::getColumns()
+{
+	return m_columns;
+}
+
+
+char ArgParser::getToDo()
+{
+	return m_toDo;
 }

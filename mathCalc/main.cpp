@@ -4,23 +4,21 @@ int main(int argc, char* argv[]){
 
 
 	ArgParser param;
-	param.assignData(argc, argv);
+	if (!param.assignData(argc, argv))
+		return 0;
 
 	vector<vector<double>> data;
 	try
 	{
-		DataReader reader("input.txt", data);
+		DataReader reader(param.getPath().c_str(), data);
 	}
 	catch (exception &e)
 	{
 		cout << e.what() << endl;
 	}
-	for (int i = 0; i < data.size(); i++)
-	{
-		for (int j = 0; j < data[i].size(); j++)
-		{
-			std::cout << data[i][j] <<std::endl;
-		}
-	}
+
+	Calculations calc(data, param);
+	calc.run();
+
 	return 0;
 }

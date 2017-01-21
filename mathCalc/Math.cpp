@@ -64,3 +64,13 @@ double Math::findStdDev()
 
 	return sqrt(standardDeviation / m_size);
 }
+
+void Math::performTest()
+{
+	std::cout << "calculated data: " << std::endl;
+	std::cout << "minimum: " << findMin() << std::endl;
+	std::cout << "maximum: " << findMax() << std::endl;
+	std::cout << "mean: " << findMean() << std::endl;
+	std::cout << "median: " << findMedian() << std::endl;
+	std::cout<< "standard deviation: " << findStdDev() << "\n \n ";
+}

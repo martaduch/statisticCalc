@@ -32,5 +32,5 @@ class Wilcoxon
 	const std::vector<double> *m_data2;
 public:
 	Wilcoxon();
-	bool performTest(const std::vector<double> &vec1, const std::vector<double> &vec2);
+	bool performTest(std::vector<double> &vec1, std::vector<double> &vec2);
 };

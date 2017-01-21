@@ -79,7 +79,7 @@ char DataReader::findDelimiter()
 {
 	for (size_t i = 0; i < m_text.size(); i++)
 	{
-		if (!isdigit(m_text[i]) && m_text[i] != '.')
+		if (!isdigit(m_text[i]) && m_text[i] != '.' && m_text[i] != '-')
 		{
 			return m_text[i];
 		}

@@ -24,10 +24,16 @@
     <ClCompile Include="Wilcoxon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileOperations.cpp">
+    <ClCompile Include="DataReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataReader.cpp">
+    <ClCompile Include="ArgParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Calculations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Friedman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,10 +47,16 @@
     <ClInclude Include="Headers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileOperations.h">
+    <ClInclude Include="DataReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataReader.h">
+    <ClInclude Include="ArgParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Friedman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

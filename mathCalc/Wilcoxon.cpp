@@ -123,7 +123,7 @@ bool Wilcoxon::tStaticticW()
 		return false;
 }
 
-bool Wilcoxon::performTest(const std::vector<double> &vec1, const std::vector<double> &vec2)
+bool Wilcoxon::performTest(std::vector<double> &vec1, std::vector<double> &vec2)
 {
 	m_data1 = &vec1;
 	m_data2 = &vec2;

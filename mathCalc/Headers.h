@@ -11,6 +11,7 @@
 #include <fstream>
 #include "Math.h"
 #include "Wilcoxon.h"
+#include "Friedman.h"
 #include "ArgParser.h"
 #include "DataReader.h"
-
+#include "Calculations.h"
