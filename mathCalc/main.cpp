@@ -6,16 +6,16 @@ int main(int argc, char* argv[]){
 	if (!param.assignData(argc, argv))
 		return 1;
 
-	vector<vector<double>> data;
+	std::vector<std::vector<double>> data;
 	try
 	{
-		DataReader reader(param.getPath().c_str(), data);
-		Tests calc(data, param);
-		calc.run();
+		DataReader reader(param.getPath().c_str(), data, param.getDelimiter());
+		Tests test(data, param);
+		test.run();
 	}
-	catch (exception &e)
+	catch (std::exception &e)
 	{
-		cout << e.what() << endl;
+		std::cout << e.what() << std::endl;
 		return 1;
 	}
 

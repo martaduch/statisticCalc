@@ -6,35 +6,35 @@ Friedman::Friedman(std::vector<std::vector<double>> &vec)
 	{
 		dataVector.push_back(vec[i]);
 	}
-	m_dF = dataVector.size() - 1;
+	m_degFreedom = dataVector.size() - 1;
 }
 
 
 bool Friedman::signRanks()
 {
-	if (m_dF > 50)
+	if (m_degFreedom > maxDegFreedom)
 		return false;
 
 	for (size_t i = 0; i < dataVector.size(); i++)
 	{
-		vector<double> &column = dataVector[i];
-		vector<size_t> usedIndexes;
+		std::vector<double> &column = dataVector[i];
+		std::vector<size_t> usedIndexes;
 
 		double rank = 1;
 		while (true)
 		{
-			vector<size_t> indexes;
-			double temp = 9999999999;
+			std::vector<size_t> indexes;
+			double lastSmallest = 9999999999;
 
 			for (size_t i = 0; i < column.size(); i++)
 			{
-				if (std::find(usedIndexes.begin(), usedIndexes.end(), i) == usedIndexes.end() && column[i] < temp)
+				if (std::find(usedIndexes.begin(), usedIndexes.end(), i) == usedIndexes.end() && column[i] < lastSmallest)
 				{
-					temp = column[i];
+					lastSmallest = column[i];
 					indexes.clear();
 					indexes.push_back(i);
 				}
-				else if (column[i] == temp)
+				else if (column[i] == lastSmallest)
 				{
 					indexes.push_back(i);
 				}
@@ -89,11 +89,12 @@ double Friedman::chiValue()
 bool Friedman::compare()
 {
 	//a=0.05
-	double chiTable[] = { 3.84, 5.99, 7.81, 9.49, 11.07, 12.59, 14.07, 15.51, 16.92, 18.31, 19.68, 21.03, 22.36,
+	double chiTable[maxDegFreedom] = { 3.84, 5.99, 7.81, 9.49, 11.07, 12.59, 14.07, 15.51, 16.92, 18.31, 19.68, 21.03, 22.36,
 						23.69, 25, 26.2, 27.59, 28.87, 30.14, 31.41, 32.67, 33.92, 35.17, 36.42, 37.65, 38.89,
 						40.11, 41.34, 42.56, 43.77, 44.99, 46.19, 47.4, 48.6, 49.8, 51, 52.19, 53.38, 54.57, 55.76,
 						56.94, 58.12, 59.3, 60.48, 61.66, 62.83, 64, 65.17, 66.34};
-	double Rcritical = chiTable[m_dF];
+
+	double Rcritical = chiTable[m_degFreedom];
 	if (chiValue() < Rcritical)
 		return true;
 	else
@@ -104,7 +105,7 @@ bool Friedman::compare()
 bool Friedman::performTest()
 {
 	if (!signRanks()) {
-		std::cout << "data format too big, unable to perform test" << std::endl;
+		std::cout << "data format too big, unable to perform test. Max number of columns equals 50" << std::endl;
 		return false;
 	}
 	sumRanks();

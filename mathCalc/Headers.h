@@ -15,3 +15,5 @@
 #include "ArgParser.h"
 #include "DataReader.h"
 #include "Tests.h"
+
+static const size_t maxDegFreedom = 49;

@@ -3,7 +3,6 @@
 class Math
 {
 	std::vector<double> *m_sample;
-	int m_size;
 	double findMin();
 	double findMax();
 	double findMean();

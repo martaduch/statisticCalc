@@ -7,7 +7,7 @@ class Friedman
 	void sumRanks();
 	double chiValue();
 	bool compare();
-	size_t m_dF;
+	size_t m_degFreedom;
 public:
 	bool performTest();
 	Friedman(std::vector<std::vector<double>> &vec);

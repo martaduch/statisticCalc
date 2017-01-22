@@ -1,8 +1,8 @@
 #include "Headers.h"
 
-Tests::Tests(vector<vector<double>> &data, ArgParser object):
-	m_columns(object.getColumns()),
-	m_test(object.getToDo())
+Tests::Tests(std::vector<std::vector<double>> &data, ArgParser argParser):
+	m_columns(argParser.getColumns()),
+	m_test(argParser.getToDo())
 {
 		std::vector<int> vect;
 		int i;
@@ -15,7 +15,7 @@ Tests::Tests(vector<vector<double>> &data, ArgParser object):
 		for (size_t i = 0; i < vect.size(); i++) 
 		{
 			if (vect[i] > data.size())
-				throw exception("Column out of range");
+				throw std::exception("Column out of range");
 			m_readyData.push_back(data[vect[i] - 1]);
 		}
 }
@@ -26,7 +26,10 @@ void Tests::run()
 	{
 	case 'w': {
 		Wilcoxon w;
-		w.performTest(m_readyData[0], m_readyData[1]);
+		if (m_readyData.size() < 2)
+			std::cout << "Improper data; at least 2 columns needed" << std::endl;
+		else
+			w.performTest(m_readyData[0], m_readyData[1]);
 		break;
 	}
 

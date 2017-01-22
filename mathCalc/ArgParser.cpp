@@ -5,10 +5,11 @@ void ArgParser::help()
 	std::cout << "\t *** HELP ***" << std::endl;
 	std::cout << "How to set arguments properly: "<< std::endl;
 	std::cout << "-i path to input file" << std::endl;
-	std::cout << " -c columns to be used separeted with colons or 'a' for all columns" << std::endl; 
+	std::cout << " -c columns to be used separeted with colons or '0' for all columns" << std::endl; 
 	std::cout << "-t test to be performed:" << std::endl;
 	std::cout << "\t g - general standard tests, w - Wilcoxon test, f - friedman test" << std::endl;
-	std::cout << "Example: -t input.txt -c 5,6 -t w,f";
+	std::cout << "Additionaly delimiter may be specified as -d" << std::endl;
+	std::cout << "Example: -t input.txt -c 5,6 -t w -d ; ";
 }
 
 bool ArgParser::assignData(int argc, char *argv[])
@@ -32,6 +33,9 @@ bool ArgParser::assignData(int argc, char *argv[])
 		case 't':
 			m_toDo = argv[i + 1][0];
 			break;
+		case 'd':
+			m_delimiter = argv[i + 1][0];
+			break;
 		}
 	}
 
@@ -54,4 +58,10 @@ std::string ArgParser::getColumns()
 char ArgParser::getToDo()
 {
 	return m_toDo;
+}
+
+
+char ArgParser::getDelimiter()
+{
+	return m_delimiter;
 }
