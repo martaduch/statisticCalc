@@ -8,9 +8,21 @@ Tests::Tests(std::vector<std::vector<double>> &data, ArgParser argParser):
 		int i;
 		while (m_columns >> i)
 		{
-			vect.push_back(i);
-			if (m_columns.peek() == ',')
-				m_columns.ignore();
+			if (i == 0)
+			{
+				for (size_t j = 0; j < data.size(); j++)
+				{
+					m_readyData.push_back(data[i]);
+				}
+				break;
+			}
+			else
+			{
+				vect.push_back(i);
+				if (m_columns.peek() == ',')
+					m_columns.ignore();
+			}
+			
 		}
 		for (size_t i = 0; i < vect.size(); i++) 
 		{

@@ -41,7 +41,7 @@ bool Wilcoxon::createRanks()
 
 	if (m_nonZero < 6 || m_nonZero > 50)
 	{
-		std::cout << "Unable to perform test. Improper data. Number of trials should be beetwen 6-50" << std::endl;
+		std::cout << "For larger " << std::endl;
 		return false;
 	}
 
@@ -116,7 +116,7 @@ bool Wilcoxon::tStaticticW()
 		wValue = (int)round(wNegative);
 
 	std::cout << "W statistic is " << wValue << std::endl;
-
+	
 	if (wValue <= wCritical[m_nonZero - 6])
 		return true;
 	else

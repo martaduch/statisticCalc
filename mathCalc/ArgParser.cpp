@@ -5,7 +5,7 @@ void ArgParser::help()
 	std::cout << "\t *** HELP ***" << std::endl;
 	std::cout << "How to set arguments properly: "<< std::endl;
 	std::cout << "-i path to input file" << std::endl;
-	std::cout << " -c columns to be used separeted with colons or '0' for all columns" << std::endl; 
+	std::cout << " -c columns to be used separeted with colons or '0' for usage of all columns" << std::endl; 
 	std::cout << "-t test to be performed:" << std::endl;
 	std::cout << "\t g - general standard tests, w - Wilcoxon test, f - friedman test" << std::endl;
 	std::cout << "Additionaly delimiter may be specified as -d" << std::endl;
@@ -20,7 +20,7 @@ bool ArgParser::assignData(int argc, char *argv[])
 		return false;
 	}
 
-	for (size_t i = 1; i < argc - 1; i++)
+	for (size_t i = 1; i < argc - 1; i+=2)
 	{
 		switch (argv[i][1])
 		{

@@ -94,7 +94,9 @@ bool Friedman::compare()
 						40.11, 41.34, 42.56, 43.77, 44.99, 46.19, 47.4, 48.6, 49.8, 51, 52.19, 53.38, 54.57, 55.76,
 						56.94, 58.12, 59.3, 60.48, 61.66, 62.83, 64, 65.17, 66.34};
 
-	double Rcritical = chiTable[m_degFreedom];
+	double Rcritical = chiTable[m_degFreedom-1];
+	std::cout << "Chi-square value: " << chiValue() <<std::endl;
+	std::cout << "Chi-square critical value: " << Rcritical << std::endl;
 	if (chiValue() < Rcritical)
 		return true;
 	else
@@ -110,8 +112,8 @@ bool Friedman::performTest()
 	}
 	sumRanks();
 	if (compare())
-		std::cout << "Fail to reject Null Hypothesis as calculated Chi-Square <= Chi-Square critical";
+		std::cout << "Fail to reject Null Hypothesis as calculated Chi-Square <= Chi-Square critical" << std::endl;
 	else
-		std::cout << "Reject H0 as Chi-Square > Chi-square critical";
+		std::cout << "Reject H0 as Chi-Square > Chi-square critical"<<std::endl;
 	return true;
 }
