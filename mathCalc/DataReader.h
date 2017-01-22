@@ -22,5 +22,5 @@ private:
 
 public:
 	DataReader(const char *filepath, vector<vector<double>> &data, char delimiter = NULL);
-	~DataReader();
+	~DataReader() {};
 };

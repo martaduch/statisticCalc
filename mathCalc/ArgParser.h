@@ -11,7 +11,6 @@ public:
 	~ArgParser() {};
 	void help();
 	bool assignData(int argc, char *argv[]);
-	void toDo();
 	std::string getPath();
 	std::string getColumns();
 	char getToDo();

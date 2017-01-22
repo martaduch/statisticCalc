@@ -14,4 +14,4 @@
 #include "Friedman.h"
 #include "ArgParser.h"
 #include "DataReader.h"
-#include "Calculations.h"
+#include "Tests.h"

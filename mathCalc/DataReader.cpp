@@ -23,7 +23,7 @@ DataReader::DataReader(const char *filepath, vector<vector<double>> &data, char 
 				m_line++;
 			}
 		}
-		catch (exception &e)
+		catch (exception)
 		{
 			myfile.close();
 			throw;
@@ -35,11 +35,6 @@ DataReader::DataReader(const char *filepath, vector<vector<double>> &data, char 
 	{
 		throw exception("Unable to open file");
 	}
-}
-
-
-DataReader::~DataReader()
-{
 }
 
 
@@ -93,7 +88,7 @@ bool DataReader::checkLine()
 {
 	for (size_t i = 0; i < m_text.size(); i++)
 	{
-		if (!isdigit(m_text[i]) && m_text[i] != '.' && m_text[i] != m_delimiter)
+		if (!isdigit(m_text[i]) && m_text[i] != '.' && m_text[i] != '-' && m_text[i] != m_delimiter)
 		{
 			return false;
 		}

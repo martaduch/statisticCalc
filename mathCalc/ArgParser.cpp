@@ -32,9 +32,6 @@ bool ArgParser::assignData(int argc, char *argv[])
 		case 't':
 			m_toDo = argv[i + 1][0];
 			break;
-		/*default:
-			std::cout << "unknow symbol" << std::endl;
-			return false;*/
 		}
 	}
 

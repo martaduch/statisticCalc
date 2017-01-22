@@ -10,10 +10,6 @@ Friedman::Friedman(std::vector<std::vector<double>> &vec)
 }
 
 
-Friedman::~Friedman()
-{
-}
-
 bool Friedman::signRanks()
 {
 	if (m_dF > 50)
@@ -46,7 +42,7 @@ bool Friedman::signRanks()
 
 			if (indexes.size() == 0)
 			{
-				break; // gtfo
+				break;
 			}
 
 			usedIndexes.insert(usedIndexes.end(), indexes.begin(), indexes.end());
@@ -59,13 +55,6 @@ bool Friedman::signRanks()
 				column[indexes[i]] = rankToAssign;
 			}
 		}
-
-		// print output
-		for (size_t j = 0; j < column.size(); j++)
-		{
-			printf("%.02lf ", column[j]);
-		}
-		printf("\n");
 	}
 	return true;
 }
@@ -87,7 +76,7 @@ void Friedman::sumRanks()
 
 double Friedman::chiValue()
 {
-	int R = 0;
+	double R = 0;
 	for (size_t i = 0; i < m_sumRanks.size(); i++)
 		R += m_sumRanks[i];
 	size_t n = dataVector[0].size();
@@ -123,4 +112,5 @@ bool Friedman::performTest()
 		std::cout << "Fail to reject Null Hypothesis as calculated Chi-Square <= Chi-Square critical";
 	else
 		std::cout << "Reject H0 as Chi-Square > Chi-square critical";
+	return true;
 }

@@ -30,10 +30,10 @@
     <ClCompile Include="ArgParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Calculations.cpp">
+    <ClCompile Include="Friedman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Friedman.cpp">
+    <ClCompile Include="Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +53,10 @@
     <ClInclude Include="ArgParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Calculations.h">
+    <ClInclude Include="Friedman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Friedman.h">
+    <ClInclude Include="Tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

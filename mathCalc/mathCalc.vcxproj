@@ -146,7 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Calculations.cpp" />
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="DataReader.cpp" />
     <ClCompile Include="ArgParser.cpp" />
     <ClCompile Include="Friedman.cpp" />
@@ -155,7 +155,7 @@
     <ClCompile Include="Wilcoxon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Calculations.h" />
+    <ClInclude Include="Tests.h" />
     <ClInclude Include="DataReader.h" />
     <ClInclude Include="ArgParser.h" />
     <ClInclude Include="Friedman.h" />

@@ -11,6 +11,6 @@ class Friedman
 public:
 	bool performTest();
 	Friedman(std::vector<std::vector<double>> &vec);
-	~Friedman();
+	~Friedman() {};
 };
 
