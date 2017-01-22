@@ -41,7 +41,7 @@ bool Wilcoxon::createRanks()
 
 	if (m_nonZero < 6 || m_nonZero > 50)
 	{
-		std::cout << "Unable to perform test. Improper data" << std::endl;
+		std::cout << "For larger " << std::endl;
 		return false;
 	}
 
@@ -116,14 +116,14 @@ bool Wilcoxon::tStaticticW()
 		wValue = (int)round(wNegative);
 
 	std::cout << "W statistic is " << wValue << std::endl;
-
+	
 	if (wValue <= wCritical[m_nonZero - 6])
 		return true;
 	else
 		return false;
 }
 
-bool Wilcoxon::performTest(const std::vector<double> &vec1, const std::vector<double> &vec2)
+bool Wilcoxon::performTest(std::vector<double> &vec1, std::vector<double> &vec2)
 {
 	m_data1 = &vec1;
 	m_data2 = &vec2;
